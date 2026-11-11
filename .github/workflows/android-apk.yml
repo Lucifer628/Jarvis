@@ -1,0 +1,52 @@
+name: Build JARVIS-X Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Configure deployed app URL
+        env:
+          JARVIS_WEB_URL: ${{ vars.JARVIS_WEB_URL }}
+        run: |
+          if [ -z "$JARVIS_WEB_URL" ]; then
+            echo "Set the JARVIS_WEB_URL repository variable to your deployed HTTPS URL."
+            exit 1
+          fi
+          sed -i "s|https://YOUR-JARVIS-DOMAIN.example|$JARVIS_WEB_URL|" capacitor.config.ts
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create Android project
+        run: npx cap add android
+
+      - name: Build debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: JARVIS-X-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk

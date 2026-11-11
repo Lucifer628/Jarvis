@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07131d">
+  <meta name="description" content="JARVIS-X personal AI assistant">
+  <link rel="manifest" href="/static/manifest.webmanifest">
+  <link rel="stylesheet" href="/static/styles.css">
+  <title>JARVIS-X</title>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">JX</div><div><b>JARVIS-X</b><small>PERSONAL INTELLIGENCE</small></div></div>
+      <button class="new-chat" id="newChat">＋ New conversation</button>
+      <div class="side-label">SYSTEM MODULES</div>
+      <button class="module active" data-module="chat"><span>◈</span> AI Assistant</button>
+      <button class="module" data-module="search"><span>⌕</span> Web Search</button>
+      <button class="module" data-module="weather"><span>◉</span> Weather</button>
+      <button class="module" data-module="news"><span>▤</span> News Feed</button>
+      <button class="module" data-module="calculator"><span>∑</span> Calculator</button>
+      <div class="sidebar-bottom">
+        <div class="connection"><i></i><span id="connectionText">Checking system...</span></div>
+        <button class="clear-btn" id="clearHistory">Clear conversation history</button>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <div><div class="eyebrow">PERSONAL AI INTERFACE</div><div class="top-title" id="moduleTitle">AI Assistant</div></div>
+        <div class="top-right"><span class="live-dot"></span><span>LOCAL SESSION</span><div class="avatar">LX</div></div>
+      </header>
+      <section class="workspace">
+        <div class="hero" id="hero">
+          <div class="reactor"><div class="reactor-core">J</div></div>
+          <div class="hero-kicker">SYSTEM ONLINE <span>•</span> JARVIS-X 2.0</div>
+          <h1>At your service.</h1>
+          <p>Ask a question, explore an idea, or launch a system module.</p>
+          <div class="suggestions">
+            <button data-prompt="Explain how neural networks work in simple terms.">Explain neural networks <b>↗</b></button>
+            <button data-prompt="Give me a concise technology news briefing.">Technology briefing <b>↗</b></button>
+            <button data-prompt="Help me plan a Python project.">Plan a Python project <b>↗</b></button>
+          </div>
+        </div>
+        <div class="chat-log" id="chatLog" aria-live="polite"></div>
+        <div class="tool-panel hidden" id="toolPanel"></div>
+      </section>
+      <footer class="composer-wrap" id="composerWrap">
+        <form class="composer" id="chatForm">
+          <textarea id="messageInput" rows="1" maxlength="6000" placeholder="Message JARVIS-X..." aria-label="Message JARVIS-X"></textarea>
+          <label class="memory-toggle"><input type="checkbox" id="memoryToggle" checked><span>Context</span></label>
+          <button class="send-btn" type="submit" aria-label="Send message">➤</button>
+        </form>
+        <div class="disclaimer">JARVIS-X can make mistakes. Verify important information.</div>
+      </footer>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

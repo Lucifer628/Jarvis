@@ -54,6 +54,9 @@ Set your Groq key for this terminal session:
 ```bash
 export GROQ_API_KEY="YOUR_GROQ_API_KEY"
 ```
+```bash
+export GNEWS_API_KEY="YOUR_GNEWS_API_KEY"
+```
 
 Start the app:
 
